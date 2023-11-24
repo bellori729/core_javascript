@@ -1,3 +1,5 @@
-const a = 'hello';
+console.log('13');
 
-console.log(navigator.language);
+window.alert('마우스 우클릭은 사용할 수 없습니다.');
+
+prompt('당신의 이름은?');
