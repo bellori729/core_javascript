@@ -7,6 +7,6 @@
 
 ### Basic
 
-- [x] Code Structure [바로가기](https://www.naver.com)
+- [x] Code Structure [바로가기](https://github.com/bellori729/core_javascript/tree/01.core/client/chapter/core)
 - [ ] Code Structure [바로가기](https://www.naver.com)
 - [ ] Code Structure [바로가기](https://www.naver.com)
