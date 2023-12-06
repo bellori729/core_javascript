@@ -24,25 +24,23 @@ console.log(messenger === conversationTool);
 
 // 객체 복사
 // 1. for ~ in 문을 사용한 복사
+
 const cloneObject = {};
 
 for (let key in messenger) {
   cloneObject[key] = messenger[key];
 }
 
-// console.log(cloneObject);
-
 // 2. Object.assign()을 사용한 복사
 
 const copyObject = Object.assign({}, messenger);
-
-// console.log(copyObject);
+console.log(copyObject);
 
 // 3. 전개 연산자(...)를 사용한 복사
 
-const spreadObject = { ...messenger };
+const spreadObject = { ...messenger }; // 제일 많이 씀 🐶🍯
 
-// console.log(spreadObject);
+console.log(spreadObject);
 
 // 4. 객체를 복사해주는 유틸 함수
 
@@ -64,8 +62,7 @@ const cssMapB = {
   color: '#3f9e97',
 };
 
-// let combinedCssMap = Object.assign({}, cssMapA, cssMapB);
-
+// let combinedCssMap = Object.assign({},cssMapA,cssMapB);
 let combinedCssMap = { ...cssMapA, ...cssMapB };
 
 // 중첩된 프로퍼티에 객체를 포함하는 객체 복사
@@ -83,12 +80,11 @@ const containerStyles = {
 
 let copyedContainerStyles = { ...containerStyles };
 
-// 1. 깊은 복사 유틸리티 함수
-
 const realDeep = cloneDeep(containerStyles);
 
 console.log(realDeep);
 
+// 1. 깊은 복사 유틸리티 함수
 function cloneDeep(object) {
   return Object.fromEntries(
     Object.entries(object).map(([key, value]) => {
@@ -111,7 +107,7 @@ const defaultOptions = {
 };
 
 function ajax(options) {
-  const { method, body, headers } = {
+  const newOptions = {
     ...defaultOptions,
     ...options,
     header: {
@@ -119,10 +115,13 @@ function ajax(options) {
       ...options.headers,
     },
   };
+
+  const { method, body } = newOptions;
+
+  console.log(newOptions.method);
 }
 
 ajax({
-  method: 'POST',
   headers: {
     origin: 'euid',
   },
