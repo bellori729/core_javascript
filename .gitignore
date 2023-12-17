@@ -1,5 +1,7 @@
-# Created by https://www.toptal.com/developers/gitignore/api/intellij,macos,node,webstorm,windows,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=intellij,macos,node,webstorm,windows,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/intellij,,macos,,node,,webstorm,,windows,,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=intellij,,macos,,node,,webstorm,,windows,,visualstudiocode
+
+#!! ERROR:  is undefined. Use list command to see defined gitignore types !!#
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -406,4 +408,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/intellij,macos,node,webstorm,windows,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/intellij,,macos,,node,,webstorm,,windows,,visualstudiocode

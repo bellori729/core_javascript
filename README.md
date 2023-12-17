@@ -1,12 +1,13 @@
 # 멋쟁이 사자처럼
 ---
-## 자바스크립트 학습 저장소
+## DOM 학습 저장소 
 ---
 
-학습이 완료된 항목은 체크박스로 표시됩니다.
 
-### Basic
+자바스크립트의 DOM API(application programming interface)에 대해 학습합니다.
 
-- [x] Code Structure [바로가기](https://github.com/bellori729/core_javascript/tree/01.core/client/chapter/core)
-- [ ] Code Structure [바로가기](https://www.naver.com)
-- [ ] Code Structure [바로가기](https://www.naver.com)
+
+
+
+
+

@@ -13,15 +13,22 @@ const arrayLike = {
   0: 'body',
   1: 'head',
   2: 'div',
-  length: 3,
+  length:3,
   // [Symbol.iterator]{...}
-};
+}
+
+
+
 
 const str = '유사배열입니다.';
 
-for (let value of str) {
+
+for(let value of str){
   // console.log(value);
 }
+
+
+
 
 const languages = [
   {
@@ -50,21 +57,29 @@ const languages = [
   },
 ];
 
+
 // for ~ of 문
 // - 특정 조건에서 건너띄기
 // - 특정 조건에서 중단하기
 
 // iterable한 요소를 순환 할때 사용  => 배열
 
-for (let value of languages) {
+for(let value of languages){
+  
   let name = value.name;
 
   // if(name === 'Java') continue;
-
+  
   // if(name.includes('Java') && name.length < 5) continue
-  if (name.includes('Java') && name.length < 5) break;
+  if(name.includes('Java') && name.length < 5) break;
   // console.table(value);
+
 }
+
+
+
+
+
 
 const randomUser = {
   gender: 'female',
@@ -76,10 +91,7 @@ const randomUser = {
     country: 'United Kingdom',
     postcode: 'FO5E 4TN',
     coordinates: { latitude: '-4.3301', longitude: '155.0223' },
-    timezone: {
-      offset: '-4:00',
-      description: 'Atlantic Time (Canada), Caracas, La Paz',
-    },
+    timezone: { offset: '-4:00', description: 'Atlantic Time (Canada), Caracas, La Paz' },
   },
   email: 'carol.may@example.com',
   login: {
@@ -104,6 +116,7 @@ const randomUser = {
   nat: 'GB',
 };
 
+
 // console.log( randomUser );
 
 Object.prototype.nickName = 'tiger';
@@ -112,6 +125,9 @@ Object.prototype.nickName = 'tiger';
 // - for ~ in 문
 
 // 재귀 함수
+
+
+
 
 // for(let key in randomUser){
 //   if(Object.prototype.hasOwnProperty.call(randomUser,key)){
@@ -136,40 +152,68 @@ Object.prototype.nickName = 'tiger';
 //   }
 // }
 
+
+
+
+
+
+
 // - for ~ of 문
 
 // Object.keys();
 // Object.values();
 // Object.entries(); // 객체를 배열로 반환 -> key,value를 하나의 쌍으로 담은 배열
 
-// 배열 구조분해할당
+// 배열 구조분해할당 
 
-const z1 = performance.now();
 
-for (let keyValue of Object.entries(randomUser)) {
+const z1 = performance.now()
+
+for(let keyValue of Object.entries(randomUser)){
   let key = keyValue[0];
   let value = keyValue[1];
 
-  console.log('\tL1 : ', value);
+  console.log('\tL1 : ' ,value);
 
-  if (typeof value === 'object') {
-    for (let keyValue of Object.entries(value)) {
+  if(typeof value === 'object'){
+    
+    for(let keyValue of Object.entries(value)){
+
       let key = keyValue[0];
       let value = keyValue[1];
 
-      console.log('\t\tL2 : ', value);
-      if (typeof value === 'object') {
-        for (let keyValue of Object.entries(value)) {
+      console.log('\t\tL2 : ' ,value);
+      if(typeof value === 'object'){
+        
+        for(let keyValue of Object.entries(value)){
           let key = keyValue[0];
           let value = keyValue[1];
-
-          console.log('\t\t\tL3 : ', value);
+          
+          console.log('\t\t\tL3 : ' ,value);
         }
       }
     }
   }
 }
-const z2 = performance.now();
-console.log(z2 - z1);
+const z2 = performance.now()
+console.log(z2-z1);
+
+
+
 
 // - 성능 비교 진단
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
