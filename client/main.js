@@ -1,3 +1,2 @@
-const a = 'hello';
-
-console.log(navigator.language);
+import {} from './lib/utils/xhr.js';
+import {} from './lib/utils/delay.js';
