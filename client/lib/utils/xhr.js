@@ -1,5 +1,3 @@
-
-
 /* 
 
 [readyState]
@@ -25,34 +23,31 @@ function xhr({
   onFail = null,
   body = null,
   headers = {
-    'Content-Type':'application/json',
-    'Access-Control-Allow-Origin': '*'
-  }
-} ){
-
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
+}) {
   const xhr = new XMLHttpRequest();
 
-  xhr.open(method,url)
-  
-  Object.entries(headers).forEach(([key,value])=>{
-    xhr.setRequestHeader(key,value)
-  })
+  xhr.open(method, url);
 
-  xhr.addEventListener('readystatechange',()=>{
-    
-    const {readyState,status,response} = xhr // 객체의 구조분해할당
+  Object.entries(headers).forEach(([key, value]) => {
+    xhr.setRequestHeader(key, value);
+  });
 
-    if(readyState === 4){
-      if(status >= 200 && status < 400){
+  xhr.addEventListener('readystatechange', () => {
+    const { readyState, status, response } = xhr; // 객체의 구조분해할당
+
+    if (readyState === 4) {
+      if (status >= 200 && status < 400) {
         onSuccess(JSON.parse(response));
-      }else{
-        onFail( {message:'에러가 발생했습니다.'} )
+      } else {
+        onFail({ message: '에러가 발생했습니다.' });
       }
     }
-  })
-  xhr.send(JSON.stringify(body))
+  });
+  xhr.send(JSON.stringify(body));
 }
-
 
 // xhr({
 //   method:'POST',
@@ -66,45 +61,42 @@ function xhr({
 //   body: {name:'tiger'}
 // })
 
-
-
-
-xhr.get = (url,onSuccess,onFail) => {
+xhr.get = (url, onSuccess, onFail) => {
   xhr({
     url,
     onSuccess,
-    onFail
-  })
-}
+    onFail,
+  });
+};
 
-xhr.post = (url,body,onSuccess,onFail) => {
+xhr.post = (url, body, onSuccess, onFail) => {
   xhr({
-    method:'POST',
+    method: 'POST',
     url,
     body,
     onSuccess,
-    onFail
-  })
-}
+    onFail,
+  });
+};
 
-xhr.put = (url,body,onSuccess,onFail) => {
+xhr.put = (url, body, onSuccess, onFail) => {
   xhr({
-    method:'PUT',
+    method: 'PUT',
     url,
     body,
     onSuccess,
-    onFail
-  })
-}
+    onFail,
+  });
+};
 
-xhr.delete = (url,onSuccess,onFail) => {
+xhr.delete = (url, onSuccess, onFail) => {
   xhr({
-    method:'DELETE',
+    method: 'DELETE',
     url,
     onSuccess,
-    onFail
-  })
-}
+    onFail,
+  });
+};
 
 // xhr.get(
 //   'https://jsonplaceholder.typicode.com/users',
@@ -116,110 +108,83 @@ xhr.delete = (url,onSuccess,onFail) => {
 //   }
 // )
 
-
-
-
-
 /* -------------------------------------------- */
 /*                XHR Promise API               */
 /* -------------------------------------------- */
 
-
 const defaultOptions = {
   method: 'GET',
   url: '',
-  body:null,
-  errorMessage:'서버와의 통신이 원활하지 않습니다.',
-  headers:{
-    'Content-Type':'application/json',
-    'Access-Control-Allow-Origin':'*'
-  }
-}
+  body: null,
+  errorMessage: '서버와의 통신이 원활하지 않습니다.',
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
+};
 
-
-function xhrPromise(options){
-
-
-  const {method,url,body,errorMessage} = {
+export function xhrPromise(options) {
+  const { method, url, body, errorMessage, headers } = {
     ...defaultOptions,
     ...options,
-    headers:{
+    headers: {
       ...defaultOptions.headers,
       ...options.headers,
-    }
-  }
-
-
+    },
+  };
   const xhr = new XMLHttpRequest();
 
-  xhr.open(method,url)
+  xhr.open(method, url);
 
-  xhr.send(JSON.stringify(body))
+  Object.entries(headers).forEach(([key, value]) => {
+    xhr.setRequestHeader(key, value);
+  });
+
+  xhr.send(JSON.stringify(body));
 
   return new Promise((resolve, reject) => {
-    xhr.addEventListener('readystatechange',()=>{
-      if(xhr.readyState === 4){
-        if(xhr.status >= 200 && xhr.status < 400){
-          resolve(JSON.parse(xhr.response))
-        }else{
-          reject({message:errorMessage})
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 400) {
+          resolve(JSON.parse(xhr.response));
+        } else {
+          reject({ message: errorMessage });
         }
       }
-    })
-  })
+    });
+  });
 }
 
+// xhrPromise({
+//   url:'https://jsonplaceholder.typicode.com/users'
+// })
+// .then((res)=>{
+//   console.log( res );
+// })
 
-xhrPromise({
-  url:'https://jsonplaceholder.typicode.com/users'
-})
-.then((res)=>{
-  console.log( res );
-})
+xhrPromise.get = (url) => {
+  return xhrPromise({ url });
+};
 
+xhrPromise.post = (url, body) => {
+  return xhrPromise({
+    url,
+    body,
+    method: 'POST',
+  });
+};
 
-// xhrPromise().then()
+xhrPromise.put = (url, body) => {
+  return xhrPromise({
+    url,
+    body,
+    method: 'PUT',
+  });
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+xhrPromise.delete = (url) => {
+  return xhrPromise({
+    url,
+    method: 'DELETE',
+  });
+};

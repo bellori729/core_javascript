@@ -1,5 +1,7 @@
 import { getNode } from '../dom/getNode.js';
+import { insertLast } from '../dom/insert.js';
 import { isNumber, isObject } from './typeOf.js';
+import { xhrPromise } from './xhr.js';
 
 function delay(callback, timeout = 1000) {
   setTimeout(callback, timeout);
@@ -80,6 +82,73 @@ delayP(1000); // number | object
 //     console.log(res);
 // })
 
-console.log(delayP(false));
+// console.log( delayP(false) );
 
 // promise object
+
+// async - 함수가 promise 객체를 반환하도록
+//       - await 사용 -> promise 객체
+// await - 코드의 실행 흐름 제어 (멈춤)
+//       - result 값 가져오기
+
+async function delayA(data) {
+  return data;
+}
+
+const value = await delayA('이슬기나');
+
+// value.then((res) => {
+//   console.log(res);
+// });
+
+// console.log(value);
+
+// function 라면끓이기() {
+//   delayP({data:'물'})
+//   .then((res)=>{
+//     console.log( res );
+//     return delayP({data:'스프'})
+//   })
+//   .then((res)=>{
+//     console.log( res );
+//     return delayP({data:'면넣기'})
+//   })
+//   .then((res)=>{
+//     console.log( res );
+//     return delayP({data:'그릇에담기'})
+//   })
+//   .then((res)=>{
+//     console.log( res );
+//   })
+//   console.log('물넣기');
+//   console.log('스프넣기');
+//   console.log('면넣기');
+//   console.log('그릇에담기');
+// }
+
+async function 라면끓이기() {
+  const 물 = await delayP({ data: '물' });
+  console.log(물);
+
+  const 스프 = await delayP({ data: '스프' });
+  console.log(스프);
+
+  const 면 = await delayP({ data: '면' });
+  console.log(면);
+
+  const 그릇 = await delayP({ data: '그릇' });
+  console.log(그릇);
+}
+
+// 라면끓이기();
+
+async function getData() {
+  const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/6');
+  insertLast(
+    document.body,
+    `<img src="${data.sprites['front_default']}" alt="독침붕" />`
+  );
+  console.log();
+}
+
+// getData();
